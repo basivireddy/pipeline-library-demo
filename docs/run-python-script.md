@@ -39,6 +39,15 @@ def call(String firstArg, String secondArg) {
     """
 }
 ```
+or
+
+```groovy
+def call(Map config) {
+    sh """
+        python3 ${PWD}@libs/my-shared-lib/resources/scripts/my_script.py ${config.firstArg} ${config.secondArg}
+    """
+}
+```
 
 ---
 
@@ -54,6 +63,7 @@ pipeline {
             steps {
                 script {
                     runPythonScript('Hello', 'World')
+                    // runPythonScript(firstArg: 'Hello', secondArg: 'World')
                 }
             }
         }
